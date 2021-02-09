@@ -1,0 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: scenegamesto\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-08-02 22:24\n"
+"Language: ru\n"
+"X-Crowdin-Project: scenegamesto\n"
+"X-Crowdin-Project-ID: 412018\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: contact.po\n"
+"X-Crowdin-File-ID: 154\n"
+"Language-Team: Russian\n"
+
+msgid "Could Not Send Message"
+msgstr "Не удалось отправить сообщение"
+
+msgid "Message Sent!"
+msgstr "Сообщение отправлено!"
+
+msgid "Send Message"
+msgstr "Отправить сообщение"
+
+msgid "Name"
+msgstr "Название"
+
+msgid "Enter a name."
+msgstr "Введите название."
+
+msgid "Email"
+msgstr "Почта"
+
+msgid "Input a valid email if you want a reply."
+msgstr "Вставьте действительную почту для ответа."
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "Please type your message in this field."
+msgstr "Напишите ваше сообщение в этом поле."
+

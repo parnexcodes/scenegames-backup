@@ -1,0 +1,15 @@
+.vscode
+node_modules/
+public/style.css*
+public/js.js*
+public/style-*.css*
+public/js-*.js*
+public/nfo-*.js*
+public/nfo*.js*
+public/nfo-*.css*
+public/nfo*.css*
+uploads/
+mongo_backup/
+docker-compose.override.yml
+rev-manifest.json
+locales/build/

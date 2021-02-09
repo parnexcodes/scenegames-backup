@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: scenegamesto\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-08-20 23:20\n"
+"Language: it\n"
+"X-Crowdin-Project: scenegamesto\n"
+"X-Crowdin-Project-ID: 412018\n"
+"X-Crowdin-Language: it\n"
+"X-Crowdin-File: common.po\n"
+"X-Crowdin-File-ID: 152\n"
+"Language-Team: Italian\n"
+
+msgid "FAQ"
+msgstr "Domande frequenti"
+
+msgid "Queue"
+msgstr "Coda"
+
+msgid "Contact"
+msgstr "Contattaci"
+
+msgid "Download"
+msgstr "Scarica"
+
+msgid "Releases"
+msgstr "Rilasci"
+
+msgid "Torrent"
+msgstr "Torrent"
+
+msgid "Torrents"
+msgstr "Torrent"
+
+msgid "Store Page"
+msgstr "Pagina del negozio"
+
+msgid "{{count}} file"
+msgid_plural "{{count}} files"
+msgstr[0] "{{count}} file"
+msgstr[1] "{{count}} file"
+
+msgid "Zoom In"
+msgstr "Ingrandisci"
+
+msgid "Zoom Out"
+msgstr "Rimpicciolisci"
+
+msgid "Reset Zoom"
+msgstr "Ripristina lo zoom"
+
+msgid "Save as Image"
+msgstr "Salva come immagine"
+
+msgid "Download Original File"
+msgstr "Scarica il file originale"
+
+msgid "Language"
+msgstr "Lingua"
+
+msgid "Search..."
+msgstr "Ricerca..."
+

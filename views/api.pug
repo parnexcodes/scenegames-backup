@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    title Scene Games API
+    link(rel='icon' sizes='16x16' href='/16.png')
+    link(rel='icon' sizes='32x32' href='/32.png')
+    link(rel='icon' sizes='192x192' href='/196.png')
+    style.
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+  body
+    redoc(spec-url='/openapi.yaml')
+    script(src='https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js')
+    

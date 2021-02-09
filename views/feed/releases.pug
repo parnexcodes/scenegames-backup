@@ -1,0 +1,14 @@
+doctype xml
+rss(version='2.0')
+  channel
+    title New Releases
+    description New releases from SceneGames.to
+    link #{process.env.SG_DOMAIN}/rss
+    lastbuilddate #{new Date(pubDate).toUTCString()}
+    pubDate #{new Date(pubDate).toUTCString()}
+    each release in releases
+      item
+        title #{release.name}
+        link #{process.env.SG_DOMAIN}/?search=#{release.name}
+        guid #{release.name}
+        pubDate #{new Date(release.date).toUTCString()}

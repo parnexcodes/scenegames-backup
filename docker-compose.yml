@@ -1,0 +1,48 @@
+version: '2.0'
+services:
+  web:
+    container_name: sg-app
+    build: .
+    networks:
+    - default
+    ports:
+    - '8000:46374'
+    environment:
+    
+    ## API settings
+    # Set your API key to interact with API
+    - SG_API_KEY=default-key-oh-no
+    
+    ## Vote settings
+    # When all releases are allowed to be voted on for a re-upload
+    # Time in seconds
+    # Deafult is never (1,000 years)
+    - RELEASE_EXPIRE_SECONDS=31536000000
+    
+    ## SMTP settings
+    # Contact form needs these to work
+    - SMTP_HOST=smtp.example.com
+    - SMTP_USER=user
+    - SMTP_PASS=asdf123
+    - SMTP_PORT=465
+    - SMTP_SECURE=true
+    - SMTP_RCPT=recipient@example.com
+    
+    ## hCaptcha settings
+    # Must be set! Protects download links and voting also depends on it
+    # https://www.hcaptcha.com/
+    - HC_SITE_KEY=10000000-ffff-ffff-ffff-000000000001
+    - HC_SECRET_KEY=0x0000000000000000000000000000000000000000
+    
+    depends_on:
+    - mongo
+  mongo:
+    container_name: sg-db
+    image: mongo
+    networks:
+    - default
+    ports:
+    - '27017:27017'
+networks:
+  default:
+    driver: bridge

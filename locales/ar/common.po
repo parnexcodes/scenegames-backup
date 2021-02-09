@@ -1,0 +1,71 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: scenegamesto\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-08-02 22:24\n"
+"Language: ar\n"
+"X-Crowdin-Project: scenegamesto\n"
+"X-Crowdin-Project-ID: 412018\n"
+"X-Crowdin-Language: ar\n"
+"X-Crowdin-File: common.po\n"
+"X-Crowdin-File-ID: 152\n"
+"Language-Team: Arabic\n"
+
+msgid "FAQ"
+msgstr "أسئلة"
+
+msgid "Queue"
+msgstr "قائمة الإنتظار"
+
+msgid "Contact"
+msgstr "تواصل"
+
+msgid "Download"
+msgstr "تحميل"
+
+msgid "Releases"
+msgstr "الإصدارات"
+
+msgid "Torrent"
+msgstr "تورنت"
+
+msgid "Torrents"
+msgstr "تورنت"
+
+msgid "Store Page"
+msgstr "صفحة المتجر"
+
+msgid "{{count}} file"
+msgid_plural "{{count}} files"
+msgstr[0] "{{count}} ملف"
+msgstr[1] "ملف {{count}}"
+msgstr[2] "ملفان {{count}}"
+msgstr[3] "{{count}} ملفات"
+msgstr[4] "{{count}} ملفا"
+msgstr[5] "{{count}} ملف"
+
+msgid "Zoom In"
+msgstr "تكبيرالصورة"
+
+msgid "Zoom Out"
+msgstr "تصغيرالصورة"
+
+msgid "Reset Zoom"
+msgstr "إعادة تعيين التكبير"
+
+msgid "Save as Image"
+msgstr "حفظ كصورة"
+
+msgid "Download Original File"
+msgstr "تحميل الملف الأصلي"
+
+msgid "Language"
+msgstr "اللّغة"
+
+msgid "Search..."
+msgstr "بحث..."
+

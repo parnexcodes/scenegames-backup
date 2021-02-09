@@ -1,0 +1,6 @@
+extends layout.pug
+block title
+  | #{t('errors:-:Error: {{errorStatus}}', { errorStatus: status })}
+block content
+  h1(class='text-center') #{status}
+  h3(class='text-center')= t('errors:-:OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!')

@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: scenegamesto\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-08-20 23:28\n"
+"Language: tr\n"
+"X-Crowdin-Project: scenegamesto\n"
+"X-Crowdin-Project-ID: 412018\n"
+"X-Crowdin-Language: tr\n"
+"X-Crowdin-File: common.po\n"
+"X-Crowdin-File-ID: 152\n"
+"Language-Team: Turkish\n"
+
+msgid "FAQ"
+msgstr "Sıkça Sorulan Sorular"
+
+msgid "Queue"
+msgstr "Kuyruk"
+
+msgid "Contact"
+msgstr "İletişim"
+
+msgid "Download"
+msgstr "İndir"
+
+msgid "Releases"
+msgstr "Yayınlananlar"
+
+msgid "Torrent"
+msgstr "Torrent"
+
+msgid "Torrents"
+msgstr "Torrent'ler"
+
+msgid "Store Page"
+msgstr "Mağaza Sayfası"
+
+msgid "{{count}} file"
+msgid_plural "{{count}} files"
+msgstr[0] "{{count}} dosya bulunuyor"
+msgstr[1] "{{count}} dosya bulunuyor"
+
+msgid "Zoom In"
+msgstr "Yakınlaştır"
+
+msgid "Zoom Out"
+msgstr "Uzaklaştır"
+
+msgid "Reset Zoom"
+msgstr "Yakınlaştırmayı sıfırla"
+
+msgid "Save as Image"
+msgstr "Resim olarak kaydet"
+
+msgid "Download Original File"
+msgstr "Orijinal Dosyayı İndir"
+
+msgid "Language"
+msgstr "Dil"
+
+msgid "Search..."
+msgstr "Arama..."
+

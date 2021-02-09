@@ -1,0 +1,21 @@
+/* Import modal stuff */
+@import 'css-modal/modal-config';
+@import 'css-modal/modal-core';
+@import 'modal-animations';
+@import 'modal-theme';
+
+.modal {
+  @extend %modal--transition-sg;
+  @extend %modal-theme;
+
+  // override hiding behavior
+  transform: translate(0, 0);
+  width: auto;
+  height: auto;
+  visibility: hidden;
+
+  &:target,
+  &.is-active {
+    visibility: visible;
+  }
+}

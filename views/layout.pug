@@ -1,0 +1,29 @@
+block bodyClass
+  - var bodyClass = '';
+
+doctype html
+html(lang=i18n.language)
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    title
+      block title
+        | SceneGames.to | Just 🎮 No 💩
+    link(rel='icon' sizes='16x16' href='/16.png')
+    link(rel='icon' sizes='32x32' href='/32.png')
+    link(rel='icon' sizes='192x192' href='/196.png')
+    link(href=`${staticAssetPaths.css}` rel='stylesheet')
+    link(rel='alternate' type='application/rss+xml' href='/rss' title='New Releases')
+    link(rel='alternate' type='application/rss+xml' href='/rss/torrents' title='New Torrents')
+    link(rel='search' type='application/opensearchdescription+xml' href=`/opensearchdescription.xml` title='SceneGames')
+    script.
+      window.HC_SITE_KEY = "#{process.env.HC_SITE_KEY}";
+      window.onCaptchaLoad = () => document.dispatchEvent(new Event('captcha-load'));
+    script(src='https://hcaptcha.com/1/api.js?onload=onCaptchaLoad&render=explicit' async defer)
+  body(class=`no-js ${bodyClass}` dir=i18n.dir(i18n.language) data-theme=siteTheme)
+    include includes/nav.pug
+    if process.env.SG_API_KEY === 'default-key-oh-no'
+     b= t('errors:-:You are using the default API key, you should probably change that!')
+    block content
+    block scripts
+      script(src=`${staticAssetPaths.js}`)

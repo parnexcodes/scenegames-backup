@@ -1,0 +1,33 @@
+$modal-animate-duration: 300ms;
+$modal-animate-easing: cubic-bezier(0.25, 1, 0.5, 1);
+
+%modal--transition-sg {
+	@extend %modal;
+	@extend %modal-theme;
+
+	opacity: 0;
+	transition: opacity $modal-animate-duration $modal-animate-easing,
+							visibility 0s linear $modal-animate-duration;
+	.modal-inner {
+		transform: translateY(50%);
+		transition: transform $modal-animate-duration $modal-animate-easing;
+	}
+
+	.modal-close::after {
+		transition: opacity 1s $modal-animate-easing $modal-animate-duration;
+		opacity: 0;
+	}
+
+	// Show modal when requested
+	&:target,
+	&.is-active {
+		opacity: 1;
+		transition: opacity $modal-animate-duration $modal-animate-easing;
+		.modal-inner {
+			transform: translateY(0);
+		}
+		.modal-close::after {
+			opacity: 1;
+		}
+	}
+}

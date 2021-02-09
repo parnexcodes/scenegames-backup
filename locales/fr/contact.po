@@ -1,0 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: scenegamesto\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-08-02 22:24\n"
+"Language: fr\n"
+"X-Crowdin-Project: scenegamesto\n"
+"X-Crowdin-Project-ID: 412018\n"
+"X-Crowdin-Language: fr\n"
+"X-Crowdin-File: contact.po\n"
+"X-Crowdin-File-ID: 154\n"
+"Language-Team: French\n"
+
+msgid "Could Not Send Message"
+msgstr "Impossible d'envoyer le message"
+
+msgid "Message Sent!"
+msgstr "Message envoyé!"
+
+msgid "Send Message"
+msgstr "Envoyer le message"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Enter a name."
+msgstr "Saisissez un nom."
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Input a valid email if you want a reply."
+msgstr "Insérez un email valide si vous souhaitez une réponse."
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Please type your message in this field."
+msgstr "Veuillez composer votre message dans ce champ."
+

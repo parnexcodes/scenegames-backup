@@ -1,0 +1,29 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: scenegamesto\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-08-02 22:24\n"
+"Language: es\n"
+"X-Crowdin-Project: scenegamesto\n"
+"X-Crowdin-Project-ID: 412018\n"
+"X-Crowdin-Language: es-ES\n"
+"X-Crowdin-File: errors.po\n"
+"X-Crowdin-File-ID: 156\n"
+"Language-Team: Spanish\n"
+
+msgid "OOPSIE WOOPSIE!! Uwu We made a fucky wucky!! A wittle fucko boingo! The code monkeys at our headquarters are working VEWY HAWD to fix this!"
+msgstr "OOPSIE WOOPSIE!! No te preocupes, nada puede malir sal!, ya le avisamos a los monos programadores en nuestros cuarteles generales bajo tierra para que arreglen esto!"
+
+msgid "Error: {{errorStatus}}"
+msgstr "Error: {{errorStatus}}"
+
+msgid "You are using the default API key, you should probably change that!"
+msgstr "Estas usando la API Key que viene por defecto, deberías cambiarla!"
+
+msgid "JavaScript must be enabled to use this page!"
+msgstr "JavaScript debe de estar activado para usar esta pagina!"
+

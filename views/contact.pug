@@ -1,0 +1,32 @@
+extends layout.pug
+block content
+  if success
+    h3(class='text-center')= t('contact:-:Message Sent!')
+  else
+    if errors
+      p
+        b= t('contact:-:Could Not Send Message')
+        ul
+          each error in errors
+            li= error
+    form(action='/contact', method='post' id='contact-form')
+      label(for='contact-name')= t('contact:-:Name')
+      input(id='contact-name' type='text', name='name' placeholder=t('contact:-:Enter a name.') required)
+      label(for='contact-email')= t('contact:-:Email')
+      input(id='contact-email' type='email', name='email' maxlength='255' placeholder=t('contact:-:Input a valid email if you want a reply.') required)
+      label(for='contact-body')= t('contact:-:Message')
+      textarea(id='contact-body' name='body', cols='30', rows='10' placeholder=t('contact:-:Please type your message in this field.') required)
+      input(type='hidden' name='token')
+      div(id='h-captcha' class='text-center mt-2')
+      button(class='form-submit mt-2 py-2' type='submit')= t('contact:-:Send Message')
+
+    script.
+      document.addEventListener('captcha-load', () => {
+        hcaptcha.render('h-captcha', {
+          sitekey: window.HC_SITE_KEY,
+          theme: 'dark',
+          callback: (token) => {
+            document.querySelector('#contact-form [name="token"]').value = token;
+          }
+        });
+      });

@@ -1,0 +1,41 @@
+@mixin theme-toggle-dark {
+  background: transparent;
+  box-shadow: inset -3px -2px 0 1px #c4c4c4;
+}
+
+@mixin theme-toggle-light {
+  background: #ffa;
+  box-shadow: none;
+}
+
+.theme-toggle {
+  position: relative;
+  padding: 1em;
+  cursor: pointer;
+  @include media('>=medium') {
+    padding-right: 1.5em;
+    @include rtl {
+      padding-right: auto;
+      padding-left: 1.5em;
+    }
+  }
+  .planet {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 100%;
+    transition: background ease-out 250ms, box-shadow ease 200ms;
+    @include theme-toggle-light;
+    @media (prefers-color-scheme: light) {
+      @include theme-toggle-dark;
+    }
+    @media (prefers-color-scheme: dark) {
+      @include theme-toggle-light;
+    }
+    body[data-theme="light"] & {
+      @include theme-toggle-dark;
+    }
+    body[data-theme="dark"] & {
+      @include theme-toggle-light;
+    }
+  }
+}

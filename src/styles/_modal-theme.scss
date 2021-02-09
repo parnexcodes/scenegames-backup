@@ -1,0 +1,95 @@
+%modal-theme {
+  color: var(--color-modal);
+  line-height: 1.3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // Content Area
+  .modal-inner {
+    // Overrides so we can use flexbox
+    position: static;
+    z-index: 20;
+    margin-left: 0;
+
+    border-radius: $modal-border-radius;
+    background: var(--color-modal-inner-background);
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    max-width: 100%;
+    @include media('<=medium') {
+      width: 100%;
+    }
+  }
+
+  // Header
+  header {
+    border-bottom: 1px solid var(--color-modal-border);
+    padding: 0 1.2em;
+
+    > h2 {
+      margin: 0.5em 0;
+    }
+  }
+
+  // Content
+  .modal-content {
+    border-bottom: 1px solid var(--color-modal-border);
+    padding: 15px 1.2em;
+  }
+
+
+  // Footer
+  footer {
+    padding: 0 1.2em 18px;
+    background: #f0f0f0;
+    border-radius: $modal-border-radius;
+  }
+
+  // A close button
+  .modal-close {
+    display: block;
+    text-indent: -100px;
+
+    // Background as close
+    &:before {
+      background: rgba(0, 0, 0, .8);
+    }
+
+    // Actual close button on modal
+    &:after {
+      visibility: hidden;
+    }
+  }
+
+  @media screen and (max-width: $modal-small-breakpoint) {
+    .modal-inner {
+      padding-top: 4em;
+    }
+
+    &:target,
+    &.is-active {
+      .modal-close {
+        &::after {
+          visibility: visible;
+          content: '\00d7';
+          position: fixed;
+          width: 2em;
+          height: 2em;
+          font-size: 2em;
+          text-align: center;
+          text-indent: 0;
+          top: 0;
+          background: var(--color-modal-inner-background);
+          right: 0;
+          @include rtl {
+            right: auto;
+            left: 0;
+          }
+        }
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: scenegamesto\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-08-02 22:24\n"
+"Language: fr\n"
+"X-Crowdin-Project: scenegamesto\n"
+"X-Crowdin-Project-ID: 412018\n"
+"X-Crowdin-Language: fr\n"
+"X-Crowdin-File: common.po\n"
+"X-Crowdin-File-ID: 152\n"
+"Language-Team: French\n"
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "Queue"
+msgstr "File d'attente"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Download"
+msgstr "Téléchargez"
+
+msgid "Releases"
+msgstr "Sorties"
+
+msgid "Torrent"
+msgstr "Torrent"
+
+msgid "Torrents"
+msgstr "Torrents"
+
+msgid "Store Page"
+msgstr "Page du Store"
+
+msgid "{{count}} file"
+msgid_plural "{{count}} files"
+msgstr[0] "{{count}} fichier"
+msgstr[1] "{{count}} fichiers"
+
+msgid "Zoom In"
+msgstr "Zoom avant"
+
+msgid "Zoom Out"
+msgstr "Zoom arrière"
+
+msgid "Reset Zoom"
+msgstr "Réinitialiser le zoom"
+
+msgid "Save as Image"
+msgstr "Enregistrer en tant qu'image"
+
+msgid "Download Original File"
+msgstr "Télécharger l'original"
+
+msgid "Language"
+msgstr "Langue"
+
+msgid "Search..."
+msgstr "Recherche..."
+

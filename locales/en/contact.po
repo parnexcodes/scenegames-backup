@@ -1,0 +1,37 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-07-19T05:58:57.341Z\n"
+"Language: en\n"
+
+msgid "Could Not Send Message"
+msgstr "Could Not Send Message"
+
+msgid "Message Sent!"
+msgstr "Message Sent!"
+
+msgid "Send Message"
+msgstr "Send Message"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Enter a name."
+msgstr "Enter a name."
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Input a valid email if you want a reply."
+msgstr "Input a valid email if you want a reply."
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Please type your message in this field."
+msgstr "Please type your message in this field."

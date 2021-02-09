@@ -1,0 +1,69 @@
+nav(id='nav')
+  a#logo(href='/')
+  form(action='/' method='get' class='h-med')
+    input(
+      name='search'
+      placeholder=t('common:-:Search...')
+      type='search'
+      value=searchQuery || false
+    )
+  form(action='/' method='get' class='h-small')
+    input(
+      name='search'
+      placeholder=t('Search for a game, release, or by group (i.e. @grp CODEX)...')
+      type='search'
+      value=searchQuery || false
+    )
+  a(href='/faq' class='h-small')= t('common:-:FAQ')
+  a(href='/queue' class='h-small')= t('common:-:Queue')
+  a(href='/contact' class='h-small')= t('common:-:Contact')
+  a(href='#language-switcher' class='h-small')
+    img(src='/translate.svg')
+  div(class='drop h-small')
+    img(src='/rss.svg', alt="RSS")
+    div
+      a(href='/rss')= t('common:-:Releases')
+      a(href='/rss/torrents')= t('common:-:Torrents')
+  div(class='theme-toggle')
+    div(class='planet')
+  button(class='hamburger hamburger--spin h-med' type='button')
+    div(class='inner')
+      span(class='bar')
+      span(class='bar')
+      span(class='bar')
+
+nav(id='mobile' class='h-med')
+  ul
+    li
+      a(href='/faq')= t('common:-:FAQ')
+    li
+      a(href='/queue')= t('common:-:Queue')
+    li
+      a(href='/contact')= t('common:-:Contact')
+    li
+      a(href='#language-switcher')
+        img(src='/translate.svg')
+        =t('common:-:Language')
+    li
+      a(href='/rss')
+        img(src='/rss.svg', alt="RSS")
+        =t('common:-:Releases')
+    li
+      a(href='/rss/torrents')
+        img(src='/rss.svg', alt="RSS")
+        =t('common:-:Torrents')
+
+div(
+  class='modal'
+  id='language-switcher'
+  tabindex='-1'
+  role='dialog'
+  aria-labelledby='modal-label'
+  aria-hidden='true'
+)
+  div(class='modal-inner')
+    div(class='modal-content text-center')
+      each lang in languages
+        p
+          a(data-language=`${lang.code}` class='button phat d-block block-center' href='#')= `${lang.engName} (${lang.nativeName})`
+  a(href='#!' class='modal-close' title='Close' data-close='Close' data-dismiss='modal') ?

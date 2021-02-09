@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: scenegamesto\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-08-02 22:24\n"
+"Language: hu\n"
+"X-Crowdin-Project: scenegamesto\n"
+"X-Crowdin-Project-ID: 412018\n"
+"X-Crowdin-Language: hu\n"
+"X-Crowdin-File: common.po\n"
+"X-Crowdin-File-ID: 152\n"
+"Language-Team: Hungarian\n"
+
+msgid "FAQ"
+msgstr "GYIK"
+
+msgid "Queue"
+msgstr "Várólista"
+
+msgid "Contact"
+msgstr "Elérhetőség"
+
+msgid "Download"
+msgstr "Letöltés"
+
+msgid "Releases"
+msgstr "Releasek"
+
+msgid "Torrent"
+msgstr "Torrent"
+
+msgid "Torrents"
+msgstr "Torrentek"
+
+msgid "Store Page"
+msgstr "Vásárlási oldal"
+
+msgid "{{count}} file"
+msgid_plural "{{count}} files"
+msgstr[0] "{{count}} fájl"
+msgstr[1] "{{count}} fájl"
+
+msgid "Zoom In"
+msgstr "Nagyítás"
+
+msgid "Zoom Out"
+msgstr "Kicsinyítés"
+
+msgid "Reset Zoom"
+msgstr "Eredeti nagyítás visszaállítása"
+
+msgid "Save as Image"
+msgstr "Mentés képként"
+
+msgid "Download Original File"
+msgstr "Eredeti fájl letöltése"
+
+msgid "Language"
+msgstr "Nyelv"
+
+msgid "Search..."
+msgstr "Keresés..."
+

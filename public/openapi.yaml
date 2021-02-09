@@ -1,0 +1,489 @@
+openapi: 3.0.0
+servers:
+- url: "/api/v1"
+  description: Private API
+info:
+  title: Scene Games API
+  description: API to interact with Scene Games.
+  version: 1.1.0
+  x-logo:
+    url: '/logo.svg'
+    altText: Scene Games logo
+tags:
+- name: Release
+  description: A release contains info and metadata about the release itself.
+- name: Host
+  description: A host has info on a specific file host.
+- name: Link
+  description: A link contains information for a download link.
+- name: File
+  description: Files are extra viewable/downloadable files for a [Release](#tag/Release)
+- name: Queue
+- name: Announcement
+- name: Pages
+- name: IP Address
+security:
+- API Key: []
+paths:
+  "/release":
+    post:
+      tags:
+      - Release
+      summary: Add a new release
+      description: Adds a release to the site.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/Release"
+              required:
+                - name
+    patch:
+      tags:
+      - Release
+      summary: Edit an existing release
+      description: |
+        Edits a release with the supplied data.  
+        Every field is optional, you only need to specify what you want to change.
+      parameters:
+      - name: releaseName
+        in: path
+        description: Name of the release to edit.
+        example: Doom.Eternal-CODEX
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Release"
+  "/release/{releaseName}":
+    get:
+      tags:
+      - Release
+      summary: Get release info
+      parameters:
+      - name: releaseName
+        in: path
+        example: Doom.Eternal-CODEX
+        required: true
+        schema:
+          type: string
+    delete:
+      tags:
+      - Release
+      summary: Delete release
+      parameters:
+      - name: releaseName
+        in: path
+        example: Doom.Eternal-CODEX
+        required: true
+        schema:
+          type: string
+
+  "/hosts":
+    get:
+      tags:
+      - Host
+      summary: Get list of hosts
+
+  "/host":
+    post:
+      tags:
+      - Host
+      summary: Add a new host
+      description: Adds a new host.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/Host"
+              required:
+                - key
+                - name
+
+  "/host/{hostKey}":
+    patch:
+      tags:
+      - Host
+      summary: Edit an existing host.
+      description: |
+        Edits a host with the supplied data.  
+        Every field is optional, you only need to specify what you want to change.
+      parameters:
+      - name: hostKey
+        in: path
+        description: Key for the host you want to edit.
+        example: zs
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/Host"
+    get:
+      tags:
+      - Host
+      summary: Get host info.
+      description: Get the ID and name of a host.
+      parameters:
+      - name: hostKey
+        in: path
+        description: Key for the host you want.
+        example: zs
+        required: true
+        schema:
+          type: string
+          format: uuid
+    delete:
+      tags:
+      - Host
+      summary: Delete host.
+      description: Delete the specified host. This will also remove all links.
+      parameters:
+      - name: hostKey
+        in: path
+        description: Key for the host you want removed.
+        example: zs
+        required: true
+        schema:
+          type: string
+          format: uuid
+
+  "/link":
+    post:
+      tags:
+      - Link
+      summary: Add a link to a release.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Link"
+  "/link/{releaseName}":
+    delete:
+      tags:
+      - Link
+      summary: Delete links from every host from a release.
+      parameters:
+      - name: releaseName
+        in: path
+        description: Name of the release to remove links from.
+        example: Doom.Eternal-CODEX
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Filename you want to delete.
+                  example: codex-doom.eternal.r00
+  "/link/{releaseName}/{hostKey}":
+    delete:
+      tags:
+      - Link
+      summary: Delete links from a release via host key.
+      parameters:
+      - name: releaseName
+        in: path
+        description: Name of the release to remove links from.
+        example: Doom.Eternal-CODEX
+        required: true
+        schema:
+          type: string
+      - name: hostKey
+        in: path
+        description: Host key for links you want removed.
+        example: zs
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Filename you want to delete.
+                  example: codex-doom.eternal.r00
+  "/file/{releaseName}":
+    post:
+      tags:
+      - File
+      summary: Add a file to a release.
+      description: Adds a file to a release.
+      parameters:
+      - name: releaseName
+        in: path
+        description: Name of the release to assign the file to.
+        example: Doom.Eternal-CODEX
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+                - type
+                - file
+              properties:
+                name:
+                  type: string
+                  description: File name.
+                  example: codex.nfo
+                type:
+                  type: string
+                  enum:
+                   - nfo
+                   - sfv
+                   - file_id
+                  example: nfo
+                file:
+                  type: string
+                  format: binary
+    delete:
+      tags:
+      - File
+      summary: Delete all files from a release.
+      parameters:
+      - name: releaseName
+        in: path
+        description: Name of the release delete file from.
+        example: Doom.Eternal-CODEX
+        required: true
+        schema:
+          type: string
+  "/file/{releaseName}/{type}":
+    delete:
+      tags:
+      - File
+      summary: Delete specific file type from a release.
+      parameters:
+      - name: releaseName
+        in: path
+        description: Name of the release delete file from.
+        example: Doom.Eternal-CODEX
+        required: true
+        schema:
+          type: string
+      - name: type
+        in: path
+        schema:
+          type: string
+          enum:
+            - nfo
+            - sfv
+            - file_id
+        description: File type to delete.
+        example: nfo
+        required: true
+  "/announcement":
+    get:
+      tags:
+      - Announcement
+      summary: Get current announcement text.
+    post:
+      tags:
+      - Announcement
+      summary: Add or update the site announcement.
+      requestBody:
+        description: Announcement text. Leave empty to remove. Markdown supported.
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+            example: 'Hello! **this is bold**'
+  "/faq":
+    get:
+      tags:
+      - Pages
+      summary: Get current FAQ text.
+    post:
+      tags:
+      - Pages
+      summary: Add or update the FAQ text.
+      requestBody:
+        description: FAQ text. Leave empty to remove. Markdown supported.
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+            example: 'Hello! **this is bold**'
+  "/donate":
+    get:
+      tags:
+      - Pages
+      summary: Get current donation text.
+    post:
+      tags:
+      - Pages
+      summary: Add or update the donation text.
+      requestBody:
+        description: Donation text. Leave empty to remove. Markdown supported.
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+            example: 'Hello! **this is bold**'
+  "/queue":
+    get:
+      tags:
+      - Queue
+      summary: Get re-upload queue.
+      description: Retrieve a list of releases ordered by most votes first.
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: |
+            Limit the amount of results returned.  
+            If left out or `0`, the entire queue will be returned.
+          example: 1
+          required: false
+    delete:
+      tags:
+      - Queue
+      summary: Clear entire queue.
+  "/queue/:releaseName":
+    delete:
+      tags:
+      - Queue
+      summary: Remove release from queue.
+      parameters:
+      - name: releaseName
+        in: path
+        description: Name of the release to remove from queue.
+        example: Doom.Eternal-CODEX
+        required: true
+        schema:
+          type: string
+  "/ip":
+    get:
+      tags:
+      - IP Address
+      summary: Get IP address of the client.
+      description: Returns your IP address. Used for debugging purposes.
+components:
+  schemas:
+    Release:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the release.
+          example: Doom.Eternal-CODEX
+        date:
+          format: int64
+          type: integer
+          example: 1584790121000
+          description: Must be an [epoch timestamp](https://en.wikipedia.org/wiki/Unix_time) in milliseconds.
+        size:
+          type: number
+          example: 40619380480
+          default: null
+          description: Total file size of the release in bytes.
+        file_count:
+          type: number
+          example: 163
+          default: null
+          description: Amount of files in the release.
+        file_counts:
+          type: object
+          description: |
+            Overrides `file_count` if defined.
+            Object defining how much files each host has for this release.  
+            The whole object will be replaced when editing.
+          additionalProperties:
+            x-additionalPropertiesName: host-key
+            type: number
+            description: Amount of files this host has.
+          example:
+            zs: 100
+            mfm: 10
+        btih:
+          type: string
+          example: e759ebef1bcadb62ea6fd5f71861bc3254da0963
+          pattern: '^[A-Fa-f0-9]{40}$'
+          minLength: 40
+          maxLength: 40
+          default: null
+          description: BitTorrent hash of the torrent for release.
+        store_link:
+          type: string
+          example: https://store.steampowered.com/app/782330/DOOM_Eternal/
+          description: Link to the game page.
+        hidden:
+          type: boolean
+          default: false
+          description: Whether or not this release is hidden from the public.
+    Host:
+      type: object
+      properties:
+        key:
+          type: string
+          format: uuid
+          example: zs
+          description: Host key. Used with link endpoints.
+        name:
+          type: string
+          description: The name of the host.
+          example: ZippyShare
+    Link:
+      type: object
+      required:
+        - release
+        - host
+        - link
+      properties:
+        release:
+          type: string
+          description: The name of the release the link belongs to.
+          example: Doom.Eternal-CODEX
+        host:
+          type: string
+          example: zs
+          description: |
+            Key for the [Host](#tag/Host) the link should go under.
+        link:
+          type: string
+          example: https://example.com/dload/codex-doom.eternal.r00
+          description: The link. Obviously.
+        name:
+          type: string
+          default: null
+          example: codex-doom.eternal.r00
+          description: File name for the link.
+  securitySchemes:
+    API Key:
+      type: apiKey
+      name: X-API-Key
+      in: header

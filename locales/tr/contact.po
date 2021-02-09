@@ -1,0 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: scenegamesto\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-08-20 23:28\n"
+"Language: tr\n"
+"X-Crowdin-Project: scenegamesto\n"
+"X-Crowdin-Project-ID: 412018\n"
+"X-Crowdin-Language: tr\n"
+"X-Crowdin-File: contact.po\n"
+"X-Crowdin-File-ID: 154\n"
+"Language-Team: Turkish\n"
+
+msgid "Could Not Send Message"
+msgstr "Mesaj gönderilemedi"
+
+msgid "Message Sent!"
+msgstr "Mesaj gönderildi!"
+
+msgid "Send Message"
+msgstr "Mesaj Gönder"
+
+msgid "Name"
+msgstr "İsim"
+
+msgid "Enter a name."
+msgstr "Bir isim girin."
+
+msgid "Email"
+msgstr "E-Posta"
+
+msgid "Input a valid email if you want a reply."
+msgstr "Bir yanıt beklentiniz varsa lütfen geçerli bir e-posta girin."
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "Please type your message in this field."
+msgstr "Lütfen E-postanızı bu alana girin."
+

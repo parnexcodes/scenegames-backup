@@ -1,0 +1,50 @@
+//- License requires give credit in a "reasonable" manner. Public comment in the source should suffice.
+| !{`<!--\n`}
+| !{`  "PxPlus IBM VGA8" © 2016 VileR`}
+| !{`  https://int10h.org/oldschool-pc-fonts/fontlist/#ibm_2nd_gen\n`}
+| !{`  Licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.`}
+| !{`  https://creativecommons.org/licenses/by-sa/4.0/\n`}
+| !{`-->\n`}
+
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    if !not_found
+      meta(property='og:title' content=release.name)
+      meta(property='og:description' content=t('{{fileType}} for {{releaseName}}', { fileType: file.type.toUpperCase(), releaseName: release.name }))
+    title !{not_found ? '404' : file.name}
+    link(href=`${staticAssetPaths.nfoCss}` rel='stylesheet')
+  body(class='no-js' page='nfo')
+    if not_found
+      pre(id='nfo-txt' class='text-center') [ 404 ]
+    else
+      div(class='nfo-controls')
+        a(href='#' id='zoom-out' class='h-small' title=t('common:-:Zoom Out')) [-]
+        a(href='#' id='zoom-reset' class='h-small' title=t('common:-:Reset Zoom')) [=]
+        a(href='#' id='zoom-in' class='h-small' title=t('common:-:Zoom In')) [+]
+        | !{' '}
+        span(id='color-changer')
+          span(style='background-color:#fff;color:#000' title='Classic') ▀
+          span(style='background-color:#0aa;color:#a00' title='You ever wonder why we\'re here?') ▀
+          span(style='background-color:#00a;color:#f25621' title='9001') ▀
+          span(style='background-color:#a0a;color:#0a0' title='Smash') ▀
+          span(style='background-color:#0f7745;color:#b39a63' title=`⠀▲\n▲⠀▲`) ▀
+          span(style='background-color:#a00;color:#ff5' title='You\'ll float too!') ▀
+          span(id='activate-rainbow' style='background-color:#666;color:#fff' title='?!?!?!') !
+        | !{' '}
+        a(href='#' id='toggle-txt' class='h-small' title='Text Mode') [t]
+        a(href='#' id='save' title=t('common:-:Save as Image'))
+          span [png]
+          img(src='/share.svg')
+        a(href=`/download/${release.name}/${file.type}` title=t('common:-:Download Original File'))
+          span= `[${t('common:-:Download').toLowerCase()}]`
+          img(src='/save.svg')
+      canvas(id='nfo-img' hidden)
+      div(id='nfo-txt-wrap')
+        div(id='nfo-txt-outer')
+          pre(id='nfo-txt-url') www.SceneGames.to
+          //- using "!" cause linkifyStr() already escapes tags. if removed later change to #
+          pre(id='nfo-txt') !{file.str}
+      script(src=`${staticAssetPaths.nfoJs}`)

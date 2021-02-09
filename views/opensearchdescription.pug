@@ -1,0 +1,15 @@
+OpenSearchDescription(
+  xmlns='http://a9.com/-/spec/opensearch/1.1/'
+  xmlns:moz='http://www.mozilla.org/2006/browser/search/'
+)
+  ShortName SceneGames
+  Description= t('translation:-:Search for releases on SceneGames')
+  InputEncoding UTF-8
+  Image(width='16' height='16' type='image/png') #{process.env.SG_DOMAIN}/16.png
+  Url(type='text/html' template=process.env.SG_DOMAIN)
+    Param(name='search' value='{searchTerms}')/
+  Url(
+    type='application/opensearchdescription+xml'
+    rel='self'
+    template=`${process.env.SG_DOMAIN}/opensearchdescription.xml`
+  )/

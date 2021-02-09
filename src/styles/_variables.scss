@@ -1,0 +1,64 @@
+$breakpoints: (small: 320px, medium: 768px, large: 1024px);
+
+// Nav bar
+$nav-height: 60px;
+$color-nav-bg: #000;
+$color-nav-bg-hover: #313131;
+$search-height-mobile: 50px;
+
+// Main Colors
+$color-primary: #EDC600;
+$color-background: #F9F9F9;
+$color-text: #2e2e2e;
+
+// Hamburger
+$hamburger-color: $color-primary;
+$hamburger-size: 40px;
+
+// Links
+$color-link: #E7C100;
+$color-link-hover: lighten($color-link, 10%);
+
+// Release element
+$release-border-radius: 4px;
+$color-release-background: #ffffff;
+$color-release-button-hover: #fafafa;
+$color-release-button-active: #f7f7f7;
+$color-release-border: rgba(#000, .10);
+
+// Modal
+$modal-max-width: 650px;
+$modal-border-radius: 4px;
+$modal-small-breakpoint: 30em;
+$modal-plain-screen-overlay: #fff;
+$modal-layer: 999;
+
+// Modal colors
+$color-modal-border: #ddd;
+$color-modal-inner-background: #fff;
+$color-modal: #222;
+
+/*
+  Dark Mode
+*/
+// Main Colors
+$color-background-dark: #121212;
+$color-text-dark: rgba(#fff, .85);
+
+// Release element
+$color-release-background-dark: #202020;
+$color-release-button-hover-dark: #313131;
+$color-release-button-active-dark: #292929;
+$color-release-border-dark: rgba(#fff, .10);
+
+// Modal colors
+$color-modal-border-dark: #000;
+$color-modal-inner-background-dark: $color-release-background-dark;
+$color-modal-dark: $color-text-dark;
+
+/*
+  Sitewide fonts
+  Use nice fonts that may already be installed instead of including our own
+  Taken from Bootstrap 4: https://getbootstrap.com/docs/4.0/content/reboot/#native-font-stack
+*/
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

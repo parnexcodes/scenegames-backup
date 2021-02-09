@@ -1,0 +1,31 @@
+extends layout.pug
+block title
+  | #{t('Download {{releaseName}}', { releaseName: release.name })}
+block content
+  div(class='text-center')
+    h2= t('{{hostName}} links for {{releaseName}}', { hostName: host.name, releaseName: release.name })
+    if !release.$isEmpty('file_counts') && count
+      p= t('Files Uploaded: {{linksCount}} / {{fileCount}}', { linksCount: release.links.length, fileCount: count })
+    else if !release.$isEmpty('file_count')
+      //- for old uploaded releases that don't use new counts
+      p= t('Files Uploaded: {{linksCount}} / {{fileCount}}', { linksCount: release.links.length, fileCount: !!!release.file_count ? '---' : release.file_count })
+    if verified
+      if new Date(new Date(release.last_upload).getTime() + process.env.RELEASE_EXPIRE_SECONDS * 1000).getTime() < new Date().getTime()
+        div
+          p
+            button(id='reupload' data-release=release.name)= t('Download links dead? Vote for re-upload!')
+
+      button(id='copy-links')= t('Copy Links to Clipboard')
+      each link in release.links
+        p
+          a(href=`${link.link}` class='button' target='_blank') !{link.name}
+    else
+      p= t('Please complete the captcha below to view the download links.')
+      a(
+        href=`/download/${release.name}/${host.key}`
+        target='_blank'
+        class='download-captcha-trigger'
+        data-size='full'
+        data-auto-init='true'
+      )
+      div(class='no-js-hide')= t('errors:-:JavaScript must be enabled to use this page!')

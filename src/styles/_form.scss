@@ -1,0 +1,19 @@
+label {
+  display: block;
+  margin: 1em 0;
+}
+
+textarea,
+select,
+input {
+  display: block;
+  width: 100%;
+  border: 2px solid #cecece;
+  padding: .5em;
+  border-radius: $release-border-radius;
+}
+
+button.form-submit[type="submit"] {
+  width: 100%;
+  font-size: 1.2em;
+}

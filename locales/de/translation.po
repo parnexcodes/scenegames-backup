@@ -1,0 +1,53 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: scenegamesto\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-08-20 23:20\n"
+"Language: de\n"
+"X-Crowdin-Project: scenegamesto\n"
+"X-Crowdin-Project-ID: 412018\n"
+"X-Crowdin-Language: de\n"
+"X-Crowdin-File: translation.po\n"
+"X-Crowdin-File-ID: 158\n"
+"Language-Team: German\n"
+
+msgid "Search for a game, release, or by group (i.e. @grp CODEX)..."
+msgstr "Suche nach einem Spiel, Release oder nach einer Gruppe (d. h. @grp CODEX)..."
+
+msgid "No Matches Found."
+msgstr "Keine Übereinstimmungen gefunden."
+
+msgid "Download {{releaseName}}"
+msgstr "Download {{releaseName}}"
+
+msgid "{{hostName}} links for {{releaseName}}"
+msgstr "{{hostName}} Links für {{releaseName}}"
+
+msgid "Select your preferred file hoster below, then complete the captcha to view the download links."
+msgstr "Wähle dein gewünschten File-Hoster unten aus und löse dann das Captcha um die Download-Links zu sehen."
+
+msgid "Files Uploaded: {{linksCount}} / {{fileCount}}"
+msgstr "Dateien Hochgeladen: {{linksCount}} / {{fileCount}}"
+
+msgid "Copy Links to Clipboard"
+msgstr "Kopiere Links in die Zwischenablage"
+
+msgid "Please complete the captcha below to view the download links."
+msgstr "Bitte fülle das Captcha unten aus um die Download-Links zu sehen."
+
+msgid "Download links dead? Vote for re-upload!"
+msgstr "Download Links offline? Vote für ein re-upload!"
+
+msgid "{{fileType}} for {{releaseName}}"
+msgstr "{{fileType}} für {{releaseName}}"
+
+msgid "Search for releases on SceneGames"
+msgstr "Suche nach Releases auf SceneGames"
+
+msgid "Translate Announcement"
+msgstr "Ankündigungen"
+

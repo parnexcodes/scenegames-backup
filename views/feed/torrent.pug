@@ -1,0 +1,18 @@
+doctype xml
+rss(version='2.0' xmlns:torrent='http://xmlns.ezrss.it/0.1/')
+  channel
+    title New Torrents
+    description New torrents from SceneGames.to
+    link #{process.env.SG_DOMAIN}/rss/torrents
+    lastbuilddate #{new Date(pubDate).toUTCString()}
+    pubDate #{new Date(pubDate).toUTCString()}
+    each release in releases
+      - const magnetUrl = `magnet:?xt=urn:btih:${release.btih}&dn=${release.name}`;
+      item
+        title #{release.name}
+        link #{magnetUrl}
+        guid #{release.btih}
+        torrent:magnetURI <![CDATA[#{magnetUrl}]]>
+        torrent:infoHash #{release.btih}
+        enclosure(url=magnetUrl type='application/x-bittorrent')/
+        pubDate #{new Date(release.date).toUTCString()}

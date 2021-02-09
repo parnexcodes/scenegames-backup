@@ -1,0 +1,51 @@
+div(class='release')
+  div(class='name' title=release.name)= release.name.replace(`-${release.group}`, '-')
+    a(href=`/?${querystring.encode({ search: `@grp ${release.group}` })}`)= release.group
+  if release.store_link
+    div(class='store' title=t('common:-:Store Page'))
+      a(href=release.store_link target='_blank')
+  div(class='buttons')
+    if release.links.length > 0 || release.btih
+      div
+        if release.links.length > 0
+          a(href=`#download-${release.name.replace(/\./g, '_').toLowerCase()}`)= t('common:-:Download')
+        if release.btih
+          a(href=`magnet:?xt=urn:btih:${release.btih}&dn=${release.name}`)= t('common:-:Torrent')
+    else
+      div ---
+    if !release.files.$isEmpty()
+      div
+        if release.files.nfo
+          a(href=`/nfo/${release.name}` target='_blank') NFO
+        if release.files.sfv
+          a(href=`/sfv/${release.name}` target='_blank') SFV
+        if release.files.file_id
+          a(href=`/file_id/${release.name}` target='_blank') DIZ
+  div(class='info')
+    if release.size
+      div(data-size=release.size)= filesize(release.size, { standard: 'iec' })
+    else
+      div ---
+    if release.file_count
+      div= t('common:-:{{count}} file', { count: release.file_count })
+    else
+      div ---
+    div(title=moment(release.date).format('lll'))= moment(release.date).format('L')
+
+if release.links.length > 0
+  section(
+    class='modal'
+    id=`download-${release.name.replace(/\./g, '_').toLowerCase()}`
+    tabindex='-1'
+    role='dialog'
+    aria-labelledby='modal-label'
+    aria-hidden='true'
+  )
+    div(class='modal-inner')
+      div(class='modal-content text-center')
+        h3(class='break-word mt-0') #{release.name}
+        p= t('Select your preferred file hoster below, then complete the captcha to view the download links.')
+        each host in release.hosts
+          h3(class='link-title')
+            a(href=`/download/${release.name}/${host.key}` target='_blank' class='download-captcha-trigger') !{host.name}
+    a(href='#!' class='modal-close' title='Close' data-close='Close' data-dismiss='modal') ?

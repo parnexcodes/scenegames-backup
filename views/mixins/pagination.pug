@@ -1,0 +1,24 @@
+mixin pagination(totalPages, currentPage, maxLength, searchQuery = null, arrows = true)
+  - let q = (searchQuery !== null && { search: searchQuery });
+
+  ul(class='pagination pt-3')
+    if arrows
+      li
+        if currentPage > 1
+          a(class='button h-small' href=`/?${querystring.encode(Object.assign({ page: page - 1 }, q))}`) &laquo;
+        else
+          a(class='button h-small' disabled) &laquo;
+
+    each val in generatePagination(totalPages + 1, currentPage, maxLength)
+      li(class=(val === currentPage ? 'active' : '' ))
+        if val === 0
+          a(class='button' disabled) &mldr;
+        else
+          a(class='button' href=`/?${querystring.encode(Object.assign({ page: val }, q))}`)= val
+    
+    if arrows
+      li
+        if currentPage < totalPages
+          a(class='button h-small' href=`/?${querystring.encode(Object.assign({ page: currentPage + 1 }, q))}`) &raquo;
+        else
+          a(class='button h-small' disabled) &raquo;

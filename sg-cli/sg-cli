@@ -1,0 +1,402 @@
+#!/bin/bash
+set -e
+
+ACTION=$1
+VALUE1=$2
+VALUE2=$3
+VALUE3=$4
+VALUE4=$5
+
+##API Information
+#DOMAIN and API_KEY needs to be changed below
+API_KEY="default-key-oh-no" #Change
+DOMAIN="https://change-me.com" #Change
+BASE_API_ENDPOINT="api/v1" #Don't change
+API_URL="$DOMAIN/$BASE_API_ENDPOINT"
+
+##Default location where releases are stored
+STORAGE_LOCATION="location/here" #Change
+
+##Error checking
+if ! command -v jq >/dev/null 2>&1; then
+    echo "$(tput setab 1)Error! jq is not installed.$(tput sgr0)"
+    echo "sudo apt-get install jq"
+    continue
+fi
+
+if [ "$DOMAIN" = 'https://change-me.com' ]; then
+	echo "$(tput setab 1)Error!$(tput sgr0) Default domain for DOMAIN variable is set. Please change and re-run."
+	echo "Exiting."
+	exit 1
+fi
+
+if [ "$API_KEY" = 'default-key-oh-no' ]; then
+	echo "$(tput setab 3)$(tput setaf 0)Warning!$(tput sgr0) Default API key is set."
+fi
+
+if [ "$STORAGE_LOCATION" = 'location/here' ]; then
+	echo "$(tput setab 1)Error!$(tput sgr0) Default storage location is set. Please change and re-run."
+	echo "Exiting."
+	exit 1
+fi
+
+show_help() {
+	echo
+	echo "SG-CLI is a command line utility to interact with the SceneGames API to add, remove or modify data."
+	echo
+	echo "Usage: sg-cli ACTION VALUE1 VALUE2 VALUE3 VALUE4"
+	echo
+	echo "Actions:"
+	echo "	get-announce:	Get current announcement text."
+	echo "	add-announce:	Set site announcement on front page. Supports Markdown. Refer to API documentation for additional information."
+	echo "	get-faq:	Get current FAQ text."
+	echo "	add-faq:	Set FAQ text."
+	echo "	get-donate:	Get current Donate text."
+	echo "	add-donate:	Set Donate text."
+	echo "	add-release:	Add release."
+	echo "	add-nfo:	Add NFO."
+	echo "	add-sfv:	Add SFV."
+	echo "	add-diz:	Add DIZ."
+	echo "	add-filecount:	Add scene archive count."
+	echo "	add-size:	Add total combined size of all scene archives in bytes."
+	echo "	add-hash:	Add BitTorrent hash."
+	echo "	add-store:	Add URL of store page for the game."
+	echo "	set-votes:	Add votes to release."
+	echo "	set-uploading:	Change uploading status of a release."
+	echo "	add-hoster:	YOU MUST ADD YOUR FILE HOSTER BEFORE TRYING TO ADD LINKS! Add new file hoster to the database (key and name)."
+	echo "	add-link:	Add file hoster download URL."
+	echo "	clear-links:	Deletes download links for the specified release and file hoster."
+	echo "	clear-file:	Deletes single file hoster download link from a release."
+	echo "	clear-all:	Deletes ALL download links for release."
+	echo "	del-release:	Delete release."
+	echo "	del-nfo:	Delete NFO file for release."
+	echo "	del-sfv:	Delete SFV file for release."
+	echo "	del-diz:	Delete DIZ file for release."
+	echo
+	echo "Samples:"
+	echo "	get-announce"
+	echo "	add-announce "'"*This* is some **text**. [Some Awesome Site](http://duckduckgo.com/). {#78e160}(Cool, we can do colors, too.)"'""
+	echo "	add-release The.Outer.Worlds-CODEX"
+	echo "	add-nfo The.Outer.Worlds-CODEX codex.nfo"
+	echo "	add-sfv The.Outer.Worlds-CODEX codex-the.outer.worlds.sfv"
+	echo "	add-diz The.Outer.Worlds-CODEX file_id.diz"
+	echo "	add-filecount The.Outer.Worlds-CODEX 157"
+	echo "	add-size The.Outer.Worlds-CODEX 36440000000"
+	echo "	add-hash The.Outer.Worlds-CODEX 42458ada54571ecc13ded59487a72d58a33c27e6"
+	echo "	add-store The.Outer.Worlds-CODEX https://store.steampowered.com/app/578650"
+	echo "	add-hoster zippyshare Zippyshare"
+	echo "	add-link The.Outer.Worlds-CODEX zippyshare https://www62.zippyshare.com/v/7837H89B/file.html codex-the.outer.worlds.r00"
+	echo "	clear-links The.Outer.Worlds-CODEX zippyshare"
+	echo "	clear-file The.Outer.Worlds-CODEX codex-the.outer.worlds.r00 zippyshare"
+	echo "	clear-all The.Outer.Worlds-CODEX"
+	echo "	del-release The.Outer.Worlds-CODEX"
+	echo "	del-nfo The.Outer.Worlds-CODEX" 
+	echo "	del-sfv The.Outer.Worlds-CODEX" 
+	echo "	del-diz The.Outer.Worlds-CODEX" 
+	exit 1
+}
+
+get-announce() {
+	GET_ANNOUNCE_TEXT=$(curl -s -X GET "$API_URL/announcement" -H "X-API-Key: $API_KEY" --retry 10)
+	if [[ $(echo "$GET_ANNOUNCE_TEXT" | jq --raw-output '.status') == "success" ]]; then
+	tput setaf 2
+		echo "$GET_ANNOUNCE_TEXT" | jq -r '.data'
+	tput sgr 0
+			else
+		echo "$(tput setaf 1)Failed to retrieve site announcement.$(tput sgr 0)"
+	fi
+}
+
+add-announce() {
+	if [[ $(curl -s -X POST "$API_URL/announcement" -H 'Content-Type: text/plain' -H "X-API-Key: $API_KEY" -d "$VALUE1" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully added site announcement.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to add site announcement.$(tput sgr 0)"
+	fi
+}
+
+get-faq() {
+	GET_FAQ_TEXT=$(curl -s -X GET "$API_URL/faq" -H "X-API-Key: $API_KEY" --retry 10)
+	if [[ $(echo "$GET_FAQ_TEXT" | jq --raw-output '.status') == "success" ]]; then
+	tput setaf 2
+		echo "$GET_FAQ_TEXT" | jq -r '.data'
+	tput sgr 0
+			else
+		echo "$(tput setaf 1)Failed to retrieve FAQ text.$(tput sgr 0)"
+	fi
+}
+
+add-faq() {
+	if [[ $(curl -s -X POST "$API_URL/faq" -H 'Content-Type: text/plain' -H "X-API-Key: $API_KEY" -d "$VALUE1" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully added FAQ text.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to add FAQ text.$(tput sgr 0)"
+	fi
+}
+
+get-donate() {
+	GET_DONATE_TEXT=$(curl -s -X GET "$API_URL/donate" -H "X-API-Key: $API_KEY" --retry 10)
+	if [[ $(echo "$GET_DONATE_TEXT" | jq --raw-output '.status') == "success" ]]; then
+	tput setaf 2
+		echo "$GET_DONATE_TEXT" | jq -r '.data'
+	tput sgr 0
+			else
+		echo "$(tput setaf 1)Failed to retrieve Donate text.$(tput sgr 0)"
+	fi
+}
+
+add-donate() {
+	if [[ $(curl -s -X POST "$API_URL/donate" -H 'Content-Type: text/plain' -H "X-API-Key: $API_KEY" -d "$VALUE1" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully added Donate text.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to add Donate text.$(tput sgr 0)"
+	fi
+}
+
+add-release() {
+	if [[ $(curl -s -X POST -H 'Content-Type: application/json' -H "X-API-Key: $API_KEY" -d '{"name":"'"$VALUE1"'"}' "$API_URL/release" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully added $VALUE1$.(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to add $VALUE1.$(tput sgr 0)"
+	fi
+}
+
+del-release() {
+	if [[ $(curl -s -X DELETE -H 'Content-Type: application/json' -H "X-API-Key: $API_KEY" "$API_URL/release/$VALUE1" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully deleted $VALUE1.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to delete $VALUE1.$(tput sgr 0)"
+	fi
+}
+
+add-nfo() {
+	if [[ $(curl -s -X POST "$API_URL/file/$VALUE1" -H "X-API-Key: $API_KEY" -F "file=@/$STORAGE_LOCATION/$VALUE2" -F "name=$VALUE2" -F "type=nfo" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully added $VALUE2 to $VALUE1.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to add $VALUE2 for $VALUE1$(tput sgr 0)"
+	fi
+}
+
+add-sfv() {
+	if [[ $(curl -s -X POST "$API_URL/file/$VALUE1" -H "X-API-Key: $API_KEY" -F "file=@/$STORAGE_LOCATION/$VALUE2" -F "name=$VALUE2" -F "type=sfv" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully added $VALUE2 to $VALUE1.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to add $VALUE2 for $VALUE1.$(tput sgr 0)"
+	fi
+}
+
+add-diz() {
+	if [[ $(curl -s -X POST "$API_URL/file/$VALUE1" -H "X-API-Key: $API_KEY" -F "file=@/$STORAGE_LOCATION/$VALUE2" -F "name=$VALUE2" -F "type=file_id" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully added $VALUE2 to $VALUE1.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to add $VALUE2 for $VALUE1.$(tput sgr 0)"
+	fi
+}
+
+add-filecount() {
+	if [[ $(curl -s -X PATCH -H 'Content-Type: application/json' -H "X-API-Key: $API_KEY" -d '{"name":"'"$VALUE1"'","file_count":"'"$VALUE2"'"}' "$API_URL/release/$VALUE1" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully added file count of $VALUE2 to $VALUE1.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to add file count for $VALUE1.$(tput sgr 0)"
+	fi
+}
+
+add-size() {
+	if [[ $(curl -s -X PATCH -H 'Content-Type: application/json' -H "X-API-Key: $API_KEY" -d '{"size":"'"$VALUE2"'"}' "$API_URL/release/$VALUE1" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully added size of ($VALUE2) bytes to $VALUE1.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to add size for $VALUE1.$(tput sgr 0)"
+	fi
+}
+
+add-hash() {
+	if [[ $(curl -s -X PATCH -H 'Content-Type: application/json' -H "X-API-Key: $API_KEY" -d '{"btih":"'"$VALUE2"'"}' "$API_URL/release/$VALUE1" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+			echo "$(tput setaf 2)Successfully added torrent hash for $VALUE1.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to add torrent hash for $VALUE1.$(tput sgr 0)"
+	fi
+}
+
+add-store() {
+	if [[ $(curl -s -X PATCH -H 'Content-Type: application/json' -H "X-API-Key: $API_KEY" -d '{"store_link":"'"$VALUE2"'"}' "$API_URL/release/$VALUE1" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+			echo "$(tput setaf 2)Successfully added URL of store page for $VALUE1.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to add URL of store page for $VALUE1.$(tput sgr 0)"
+	fi
+}
+
+add-hoster() {
+	if [[ $(curl -s -X POST -H 'Content-Type: application/json' -H "X-API-Key: $API_KEY" -d '{"key":"'"$VALUE1"'","name":"'"$VALUE2"'"}' "$API_URL/host" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully added file hoster $VALUE2.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to add file hoster $VALUE2.$(tput sgr 0)"
+	fi
+}
+
+add-link() {
+	if [[ $(curl -s -X POST -H 'Content-Type: application/json' -H "X-API-Key: $API_KEY" -d '{"release":"'"$VALUE1"'","host":"'"$VALUE2"'","link":"'"$VALUE3"'","name":"'"$VALUE4"'"}' "$API_URL/link/" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully added link ($VALUE3) of file ($VALUE4) to $VALUE1.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to add link.$(tput sgr 0)"
+	fi
+}
+
+clear-all() {
+	read -p "$(tput setab 1)WARNING! This will delete ALL download links for $VALUE1.$(tput sgr0) Do you want to continue (y/n)?" choice
+	case "$choice" in 
+		y|Y )	if [[ $(curl -s -X DELETE -H "X-API-Key: $API_KEY" "$API_URL/link/$VALUE1" | jq --raw-output '.status') == "success" ]]; then
+					echo "$(tput setaf 2)Successfully deleted all download links for $VALUE1.$(tput sgr 0)"
+						else
+					echo "$(tput setaf 1)Failed to delete all download links for $VALUE1.$(tput sgr 0)"
+				fi
+			;;
+		n|N )	echo "Exiting."
+			;;
+		* )		echo "Invalid input."
+			;;
+	esac
+}
+
+clear-links() {
+	read -p "$(tput setab 1)WARNING! This will delete all $VALUE2 download links for $VALUE1.$(tput sgr0) Do you want to continue (y/n)?" choice
+	case "$choice" in 
+		y|Y )	if [[ $(curl -s -X DELETE -H "X-API-Key: $API_KEY" "$API_URL/link/$VALUE1/$VALUE2" | jq --raw-output '.status') == "success" ]]; then
+					echo "$(tput setaf 2)Successfully deleted $VALUE2 download links for $VALUE1.$(tput sgr 0)"
+						else
+					echo "$(tput setaf 1)Failed to delete $VALUE2 download links for $VALUE1.$(tput sgr 0)"
+				fi
+			;;
+		n|N )	echo "Exiting."
+			;;
+		* )		echo "Invalid input."
+			;;
+	esac
+}
+
+clear-file() {
+	read -p "$(tput setab 1)WARNING! This will delete $VALUE2 file download link from $VALUE3 for $VALUE1.$(tput sgr0) Do you want to continue (y/n)?" choice
+	case "$choice" in 
+		y|Y )	if [[ $(curl -s -X DELETE -H 'Content-Type: application/json' -H "X-API-Key: $API_KEY" -d '{"name":"'"$VALUE2"'"}' "$API_URL/link/$VALUE1/$VALUE3" | jq --raw-output '.status') == "success" ]]; then
+					echo "$(tput setaf 2)Successfully deleted $VALUE2 file download link for $VALUE3 from $VALUE1.$(tput sgr 0)"
+						else
+					echo "$(tput setaf 1)Failed to delete $VALUE2 file download link for $VALUE3 from $VALUE1.$(tput sgr 0)"
+				fi
+			;;
+		n|N )	echo "Exiting."
+			;;
+		* )		echo "Invalid input."
+			;;
+	esac
+}
+
+del-nfo() {
+	if [[ $(curl -s -X DELETE -H 'Content-Type: application/json' -H "X-API-Key: $API_KEY" "$API_URL/file/$VALUE1/nfo" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully deleted NFO for $VALUE1.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to delete NFO for $VALUE1.$(tput sgr 0)"
+	fi
+}
+
+del-sfv() {
+	if [[ $(curl -s -X DELETE -H 'Content-Type: application/json' -H "X-API-Key: $API_KEY" "$API_URL/file/$VALUE1/sfv" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully deleted SFV for $VALUE1.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to delete SFV for $VALUE1.$(tput sgr 0)"
+	fi
+}
+
+del-diz() {
+	if [[ $(curl -s -X DELETE -H 'Content-Type: application/json' -H "X-API-Key: $API_KEY" "$API_URL/file/$VALUE1/file_id" --retry 10 | jq --raw-output '.status') == "success" ]]; then
+		echo "$(tput setaf 2)Successfully deleted file_id.diz for $VALUE1.$(tput sgr 0)"
+			else
+		echo "$(tput setaf 1)Failed to delete SFV for $VALUE1.$(tput sgr 0)"
+	fi
+}
+
+case ${ACTION} in
+	'get-announce')
+	get-announce
+	;;
+	
+	'add-announce')
+	add-announce
+	;;
+	
+	'add-release')
+	add-release
+	;;
+
+	'del-release')
+	del-release
+	;;
+	
+	'add-nfo')
+	add-nfo
+	;;
+
+	'add-sfv')
+	add-sfv
+	;;
+	
+	'add-diz')
+	add-diz
+	;;
+
+	'add-filecount')
+	add-filecount
+	;;
+
+	'add-size')
+	add-size
+	;;
+
+	'add-hash')
+	add-hash
+	;;
+	
+	'add-store')
+	add-store
+	;;
+
+	'add-votes')
+	add-votes
+	;;
+
+	'add-hoster')
+	add-hoster
+	;;
+
+	'add-link')
+	add-link
+	;;
+	
+	'clear-links')
+	clear-links
+	;;
+	
+	'clear-file')
+	clear-file
+	;;
+	
+	'clear-all')
+	clear-all
+	;;
+	
+	'del-nfo')
+	del-nfo
+	;;
+
+	'del-sfv')
+	del-sfv
+	;;
+
+	'del-diz')
+	del-diz
+	;;
+	
+	*)
+	show_help
+	;;
+esac
+
+exit

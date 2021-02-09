@@ -1,0 +1,46 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-07-19T05:58:57.341Z\n"
+"Language: en\n"
+
+msgid "Search for a game, release, or by group (i.e. @grp CODEX)..."
+msgstr "Search for a game, release, or by group (i.e. @grp CODEX)..."
+
+msgid "No Matches Found."
+msgstr "No Matches Found."
+
+msgid "Download {{releaseName}}"
+msgstr "Download {{releaseName}}"
+
+msgid "{{hostName}} links for {{releaseName}}"
+msgstr "{{hostName}} links for {{releaseName}}"
+
+msgid "Select your preferred file hoster below, then complete the captcha to view the download links."
+msgstr "Select your preferred file hoster below, then complete the captcha to view the download links."
+
+msgid "Files Uploaded: {{linksCount}} / {{fileCount}}"
+msgstr "Files Uploaded: {{linksCount}} / {{fileCount}}"
+
+msgid "Copy Links to Clipboard"
+msgstr "Copy Links to Clipboard"
+
+msgid "Please complete the captcha below to view the download links."
+msgstr "Please complete the captcha below to view the download links."
+
+msgid "Download links dead? Vote for re-upload!"
+msgstr "Download links dead? Vote for re-upload!"
+
+msgid "{{fileType}} for {{releaseName}}"
+msgstr "{{fileType}} for {{releaseName}}"
+
+msgid "Search for releases on SceneGames"
+msgstr "Search for releases on SceneGames"
+
+msgid "Translate Announcement"
+msgstr "Translate Announcement"

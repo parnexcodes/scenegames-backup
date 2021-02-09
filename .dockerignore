@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+public/style.css*
+public/js.js*
+public/style-*.css*
+public/js-*.js*
+public/nfo-*.js*
+public/nfo*.js*
+public/nfo-*.css*
+public/nfo*.css*
+uploads/
+mongo_backup/
+rev-manifest.json
+locales/build/

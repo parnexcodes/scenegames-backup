@@ -1,0 +1,22 @@
+extends layout.pug
+include mixins/pagination.pug
+
+block bodyClass
+  - var bodyClass = 'home';
+
+block content
+  if show_announcement && announcement
+    - const lng = i18n.services.languageUtils.getLanguagePartFromCode(i18n.language)
+    div(class='announcement') !{announcement}
+      if lng != 'en'
+        a(href=`https://translate.google.com/#en/${lng}/${encodeURIComponent(striptags(announcement).trim())}` target='_blank' class='text-small')= t('translation:-:Translate Announcement')
+
+  if releases.length > 0
+    if totalPages
+      +pagination(totalPages, page, 12, searchQuery)
+    each release in releases
+      include includes/release.pug
+    if totalPages
+      +pagination(totalPages, page, 12, searchQuery)
+  else
+    h3(class='text-center')= t('No Matches Found.')

@@ -1,0 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: scenegamesto\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-08-02 22:24\n"
+"Language: ar\n"
+"X-Crowdin-Project: scenegamesto\n"
+"X-Crowdin-Project-ID: 412018\n"
+"X-Crowdin-Language: ar\n"
+"X-Crowdin-File: contact.po\n"
+"X-Crowdin-File-ID: 154\n"
+"Language-Team: Arabic\n"
+
+msgid "Could Not Send Message"
+msgstr "تعذّر بعث الرسالة"
+
+msgid "Message Sent!"
+msgstr "تم إرسال الرسالة!"
+
+msgid "Send Message"
+msgstr "أرسل رسالة"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Enter a name."
+msgstr "قم بإدخال اسم."
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Input a valid email if you want a reply."
+msgstr "أدخل بريد إلكتروني صحيح إن كنت ترغب في جواب."
+
+msgid "Message"
+msgstr "الرسالة"
+
+msgid "Please type your message in this field."
+msgstr "المرجو إدخال رسالتك في هذا الإطار."
+

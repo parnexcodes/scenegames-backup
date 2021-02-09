@@ -1,0 +1,53 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: scenegamesto\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
+"POT-Creation-Date: 2020-07-19T05:58:57.341Z\n"
+"PO-Revision-Date: 2020-08-02 22:24\n"
+"Language: ru\n"
+"X-Crowdin-Project: scenegamesto\n"
+"X-Crowdin-Project-ID: 412018\n"
+"X-Crowdin-Language: ru\n"
+"X-Crowdin-File: translation.po\n"
+"X-Crowdin-File-ID: 158\n"
+"Language-Team: Russian\n"
+
+msgid "Search for a game, release, or by group (i.e. @grp CODEX)..."
+msgstr "Для поиска игры,по релизу,или по группе пример (@grp CODEX)..."
+
+msgid "No Matches Found."
+msgstr "Совпадений не найдено."
+
+msgid "Download {{releaseName}}"
+msgstr "Скачать {{releaseName}}"
+
+msgid "{{hostName}} links for {{releaseName}}"
+msgstr "{{hostName}} ссылки для {{releaseName}}"
+
+msgid "Select your preferred file hoster below, then complete the captcha to view the download links."
+msgstr "Выберите предпочитаемый хостинг ниже, а потом пройдите капчу, чтобы увидеть ссылки для скачивания."
+
+msgid "Files Uploaded: {{linksCount}} / {{fileCount}}"
+msgstr "Выложено файлов: {{linksCount}} / {{fileCount}}"
+
+msgid "Copy Links to Clipboard"
+msgstr "Скопировать ссылки в буфер обмена"
+
+msgid "Please complete the captcha below to view the download links."
+msgstr "Пожалуйста пройдите капчу, чтобы увидеть ссылки для скачивания."
+
+msgid "Download links dead? Vote for re-upload!"
+msgstr "Умершие ссылки? Голосуй за перезалив!"
+
+msgid "{{fileType}} for {{releaseName}}"
+msgstr "{{fileType}} для {{releaseName}}"
+
+msgid "Search for releases on SceneGames"
+msgstr "Поиск релизов на SceneGames"
+
+msgid "Translate Announcement"
+msgstr "Перевести Объявление"
+

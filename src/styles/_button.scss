@@ -1,0 +1,29 @@
+button,
+.button {
+  border: 0;
+  outline: 0;
+  color: var(--color-link);
+  background: var(--color-release-background);
+  border-radius: var(--release-border-radius);
+  box-shadow: 0 2px 4px rgba(#000, .15);
+  padding: .25rem .60rem;
+  &:hover {
+    background: var(--color-release-button-hover);
+  }
+  &:active {
+    background: var(--color-release-button-active);
+  }
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: .7;
+    &:hover {
+      background: var(--color-release-background);
+    }
+  }
+  &.phat {
+    padding: .75rem .60rem;
+    @include media('>=medium') {
+      padding: .5rem .60rem;
+    }
+  }
+}
